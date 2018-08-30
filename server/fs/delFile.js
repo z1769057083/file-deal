@@ -14,7 +14,7 @@ function delFile(){
             //删除xls文件
            fs.unlinkSync(__dirname+'/../static/download/'+item+'.xlsx');
            // 删除txt文件
-            fs.unlinkSync(__dirname+'/../uploads/'+item);
+            fs.unlinkSync(__dirname+'/../uploads/'+item+'.txt');
         });
 }
 module.exports = {

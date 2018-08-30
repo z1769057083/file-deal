@@ -10,7 +10,7 @@ const cors = require("koa-cors");
 const convert = require('koa-convert');
 const static = require('koa-static-router');
 const index = require('./routes/index')
-// const {delFile} = require("./fs/delFile")
+const {delFile} = require("./fs/delFile")
 // error handler
 onerror(app)
 
@@ -30,7 +30,7 @@ app.use(views(__dirname + '/static', {
 }))
 app.use(json())
 app.use(logger())
-app.use(require('koa-static')(__dirname + '/static'))
+app.use(convert(require('koa-static')(__dirname + '/static')))
 
 
 // logger
@@ -41,10 +41,10 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 //定时清空文件夹
-// app.use(async (ctx,next)=>{
-//     delFile();
-//     await next();
-// })
+app.use(async (ctx,next)=>{
+    delFile();
+    await next();
+})
 // routes
 app.use(index.routes(), index.allowedMethods())
 //渲染页面
