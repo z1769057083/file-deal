@@ -1,5 +1,8 @@
 const fs = require("fs");
 function delFile(){
+    if(!fs.existsSync(__dirname+`/../static/download`)){
+        fs.mkdirSync(__dirname+`/../static/download`);
+    }
     var dirArr = fs.readdirSync(__dirname+'/../static/download');
     var invalidArr = [];
     dirArr.forEach((item,index)=>{

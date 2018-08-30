@@ -116,10 +116,6 @@ function dealcText(lines,name){
         xlsxArr.push({"name":item,"data":data})
     })
     var buffer = xlsx.build(xlsxArr);
-    if(!fs.existsSync(__dirname+`/../static/download`)){
-       fs.mkdirSync(__dirname+`/../static/download`);
-    }
-
     fs.writeFileSync(__dirname+`/../static/download/${name}.xlsx`, buffer, 'binary');
 
 
